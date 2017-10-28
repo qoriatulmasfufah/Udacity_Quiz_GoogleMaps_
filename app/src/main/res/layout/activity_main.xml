@@ -30,21 +30,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Map" />
+                android:text="Tokyo" />
 
             <Button
                 android:id="@+id/btnSatellite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Satellite" />
+                android:text="Ngawi" />
 
             <Button
                 android:id="@+id/btnHybrid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Hybrid" />
+                android:text="Osaka" />
         </LinearLayout>
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"

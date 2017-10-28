@@ -17,6 +17,31 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+    static final CameraPosition TBN = CameraPosition.builder()
+            .target(new LatLng(-6.895485, 112.029752))
+            .zoom(17)
+            .bearing(90)
+            .tilt(45)
+            .build();
+    static final CameraPosition TOKYO = CameraPosition.builder()
+            .target(new LatLng(35.689487, 139.691706))
+            .zoom(17)
+            .bearing(90)
+            .tilt(45)
+            .build();
+    static final CameraPosition NGAWI = CameraPosition.builder()
+            .target(new LatLng(-7.402921, 111.444668))
+            .zoom(20)
+            .bearing(0)
+            .tilt(45)
+            .build();
+    static final CameraPosition OSAKA = CameraPosition.builder()
+            .target(new LatLng(34.693738, 135.502165))
+            .zoom(45)
+            .bearing(0)
+            .tilt(45)
+            .build();
+
     GoogleMap m_map;
     boolean mapReady = false;
 
@@ -30,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View v) {
                 if (mapReady)
-                    m_map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                   /* m_map.setMapType(GoogleMap.MAP_TYPE_NORMAL);*/
+                    flyTo(TOKYO);
             }
         });
 
@@ -39,7 +65,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View v) {
                 if (mapReady)
-                    m_map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                   /* m_map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);*/
+                    flyTo(NGAWI);
             }
         });
 
@@ -48,7 +75,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View v) {
                 if (mapReady)
-                    m_map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                   /* m_map.setMapType(GoogleMap.MAP_TYPE_HYBRID);*/
+                    flyTo(OSAKA);
             }
         });
 
@@ -56,15 +84,18 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
     }
 
+
     @Override
     public void onMapReady(GoogleMap map) {
         Toast toast = Toast.makeText(getApplicationContext(), "Map Ready!", Toast.LENGTH_SHORT);
         toast.show();
         mapReady = true;
         m_map = map;
-        LatLng newyork = new LatLng(40.712775, -74.005973);
+       /* LatLng newyork = new LatLng(40.712775, -74.005973);
         CameraPosition target = CameraPosition.builder().target(newyork).zoom(14).build();
-        m_map.moveCamera(CameraUpdateFactory.newCameraPosition(target));
+        m_map.moveCamera(CameraUpdateFactory.newCameraPosition(target));*/
+        m_map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        flyTo(TBN);
     }
 
     @Override
@@ -82,5 +113,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void flyTo(CameraPosition target) {
+        m_map.animateCamera(CameraUpdateFactory.newCameraPosition(target), 10000, null);
     }
 }
