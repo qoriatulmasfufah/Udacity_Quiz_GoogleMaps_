@@ -47,9 +47,15 @@
                 android:text="Osaka" />
         </LinearLayout>-->
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    <!--<fragment
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent" />-->
+    <fragment
+        android:id="@+id/streetviewpanorama"
+        android:name="com.google.android.gms.maps.StreetViewPanoramaFragment"
         android:layout_width="match_parent"
         android:layout_height="fill_parent" />
 
